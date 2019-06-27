@@ -86,15 +86,15 @@
             var items = document.getElementsByClassName("item");
             //获取itembox与item的宽度
             var itemBoxWidth = itemBox.offsetWidth;
-            // console.log(itemBoxWidth);
+            console.log(itemBoxWidth);
             var itemWidth = items[0].offsetWidth;
-            // console.log(itemWidth);
+            console.log(itemWidth);
             //求列数
             var column = parseInt(itemBoxWidth / itemWidth);
-            // console.log(column);
+            console.log(column);
             //求间距
-            var distence = (itemBoxWidth - itemWidth*column)/(column-1);
-            // console.log(distence); 
+            var distance = (itemBoxWidth - itemWidth*column)/(column-1);
+            // console.log(distance); 
             //定义一个存储高度的容器
             var arr = [];
             waterFull();
@@ -136,15 +136,15 @@
             function waterFull(){
                 for(var i = 0;i < items.length;i++){
                     if(i < column){
-                        items[i].style.left = (itemWidth + distence) * i+'px';
+                        items[i].style.left = (itemWidth + distance) * i+'px';
                         arr[i] = items[i].offsetHeight;
                         // console.log(arr)  
                     }else{
                         var minV = getMin(arr).minV
                         var minI = getMin(arr).minI;
-                        items[i].style.left = (itemWidth + distence) * minI +'px';
-                        items[i].style.top = minV + distence +'px';
-                        arr[minI] = minV + distence +items[i].offsetHeight;
+                        items[i].style.left = (itemWidth + distance) * minI +'px';
+                        items[i].style.top = minV + distance+'px';
+                        arr[minI] = minV + distance +items[i].offsetHeight;
                     }
                 }
             }

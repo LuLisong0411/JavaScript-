@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #game{
+            width: 800px;
+            height: 600px;
+            position: relative;
+            background:url('./image/sky.png');
+        }
+        #bird{
+            width: 34px;
+            height: 25px;
+            background:url('./image/birds.png') -10px -8px no-repeat;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div id="game">
+        <div id="bird"></div>
+    </div>
+    <script>
+        //获取相应的元素
+        var game = document.getElementById('game');
+        var birdEle = document.getElementById('bird');
+        //初始化背景图的值
+        var sky = {
+            x: 0
+        }
+        //初始化bird的值
+        var bird = {
+            speedX:5,
+            speedY:0,
+            x: birdEle.offsetLeft,
+            y: birdEle.offsetTop
+        }
+        //定义游戏状态
+        var gameState = true;
+        setInterval(function(){
+            if(gameState){
+                //移动背景让小鸟实现水平运动
+                sky.x -= 5
+                game.style.backgroundPositionX = sky.x + 'px';
+                //实现小鸟上下运动
+                bird.speedY += 1;
+                bird.y += bird.speedY;
+                //判断游戏结束的条件
+                if(bird.y < 0){
+                    gameState = false;
+                    bird.y = 0;
+                }
+                if(bird.y + birdEle.offsetHeight > 600){
+                    gameState = false;
+                    bird.y = 600 - birdEle.offsetHeight ;
+                    console.log(bird.y)
+                }
+                birdEle.style.top = bird.y + 'px';
+            }
+            
+        },30)
+        //点击文档实现小鸟向上运动
+        document.onclick = function(){
+            bird.speedY = -10;
+        }
+    
+    </script>
+</body>
+</html>
