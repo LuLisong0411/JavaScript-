@@ -1,5 +1,6 @@
 (function (){
     var position = 'absolute';
+    var elements = [];
     function Snake(options){
         options = options || {};
         //蛇节
@@ -22,6 +23,8 @@
             var object = this.body[i];
             var div = document.createElement('div');
             map.appendChild(div);
+            //记录当前蛇
+            elements.push(div);
             div.style.position = position;
             div.style.width = this.width + 'px';
             div.style.height = this.height + 'px';
@@ -30,9 +33,41 @@
             div.style.backgroundColor = object.color;
         }
     }
+    Snake.prototype.move = function(){
+        //删除之前创建的蛇
+        remove();
+        //控制蛇的身体移动 当前蛇节移动到上一蛇节的位置
+        for(var i = this.body.length - 1;i > 0;i--){
+            this.body[i].x = this.body[i - 1].x;
+            this.body[i].y = this.body[i - 1].y;
+        }
+        //控制蛇头的移动
+        
+        //判断蛇移动的方向
+        var head = this.body[0];
+        switch(this.direction){
+            case 'right':
+                head.x += 1;
+                break;
+            case 'left':
+                head.x -= 1;
+                break;
+            case 'top':
+                head.y -= 1;
+                break;
+            case 'bottom':
+                head.y += 1;
+                break;
+        }
+    }
+    //删除之前创建的蛇
+    function remove(){
+        for(var i = elements.length - 1;i >= 0 ;i--){
+            //删除div
+            elements[i].parentNode.removeChild(elements[i]);
+            //删除数组中的元素
+            elements.splice(i,1);
+        }
+    }
     window.Snake = Snake;
 })();
-//测试代码
-// var map = document.getElementById('map');
-// var snake = new Snake();
-// snake.render(map);

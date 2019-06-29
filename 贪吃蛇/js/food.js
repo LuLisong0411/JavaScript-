@@ -40,11 +40,3 @@
     //把Food构造函数让外部可以访问到
     window.Food = Food;
 })();
-
-
-
-
-//测试
-var map = document.getElementById('map');
-var food = new Food();
-food.render(map);
