@@ -74,8 +74,6 @@
             food.render(map);
         }
     }
-    
-
     //删除之前创建的蛇
     function remove(){
         for(var i = elements.length - 1;i >= 0 ;i--){
