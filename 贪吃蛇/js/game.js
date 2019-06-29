@@ -37,7 +37,7 @@
             //让蛇走一格
             //定时器的function中的this是指向window的，可以定义一个变量记录this。this_ = this.
             //获取游戏对象中的蛇的属性
-            this_.snake.move();
+            this_.snake.move(this_.food,this_.map);
             this_.snake.render(this_.map);
             //当蛇遇到边界游戏结束 
             //获取蛇头坐标

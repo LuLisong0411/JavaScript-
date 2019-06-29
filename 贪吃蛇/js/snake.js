@@ -33,7 +33,7 @@
             div.style.backgroundColor = object.color;
         }
     }
-    Snake.prototype.move = function(){
+    Snake.prototype.move = function(food,map){
         //删除之前创建的蛇
         remove();
         //控制蛇的身体移动 当前蛇节移动到上一蛇节的位置
@@ -59,7 +59,23 @@
                 head.y += 1;
                 break;
         }
+        //判断蛇头是否和食物的坐标重合
+        var headX = head.x * this.width;
+        var headY = head.y * this.height;
+        if(headX == food.x && headY == food.y){
+            //让蛇增加一节  获取蛇的最后一节
+            var last = this.body[this.body.length - 1];
+            this.body.push({
+                x: last.x,
+                y: last.y,
+                color: last.color
+            });
+            // 随机在地图上重新生成食物
+            food.render(map);
+        }
     }
+    
+
     //删除之前创建的蛇
     function remove(){
         for(var i = elements.length - 1;i >= 0 ;i--){
