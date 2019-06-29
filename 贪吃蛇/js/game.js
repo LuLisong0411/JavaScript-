@@ -26,11 +26,12 @@
         runSnake();
         //当蛇遇到边界游戏结束 
         //通过键盘控制蛇的移动方向
-
+        keyBind();
         //当蛇遇到食物 做相应的处理
 
         
     }
+    //让蛇动起来
     function runSnake(){
         var timerId = setInterval(function(){
             //让蛇走一格
@@ -54,6 +55,27 @@
             }
 
         },100)
+    }
+    //通过键盘控制蛇的移动方向
+    function keyBind(){
+        // document.onmousedown = function(){}
+        document.addEventListener('keydown',function(e){
+            // console.log(e.keyCode)      //获取键盘码  37-left 38-top 39-right 40-bottom
+            switch(e.keyCode){
+                case 37:
+                    this_.snake.direction = "left";
+                    break;
+                case 38:
+                    this_.snake.direction = "top";
+                    break;
+                case 39:
+                    this_.snake.direction = "right";
+                    break;
+                case 40:
+                    this_.snake.direction = "bottom";
+                    break;
+            }
+        },false)
     }
     window.Game = Game;
 })();
