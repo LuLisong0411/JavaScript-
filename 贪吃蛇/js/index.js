@@ -162,7 +162,6 @@
         // this.snake.move();
         // this.snake.render(this.map);
         // this.snake.move();
-        
         //让蛇动起来
         runSnake();
         //当蛇遇到边界游戏结束 
